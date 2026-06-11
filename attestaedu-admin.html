@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AttestaEdu — Espace enseignant</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:       #0f1117;
+      --ink-soft:  #6b7280;
+      --surface:   #f7f7f5;
+      --white:     #ffffff;
+      --seal:      #1a3a5c;   /* bleu foncé institutionnel */
+      --seal-mid:  #2d5f8a;
+      --valid:     #0d6c3b;
+      --valid-bg:  #e8f5ee;
+      --border:    #e2e2de;
+      --mono:      'DM Mono', monospace;
+      --serif:     'Instrument Serif', serif;
+      --sans:      'Inter', sans-serif;
+    }
+
+    body {
+      font-family: var(--sans);
+      background: var(--surface);
+      color: var(--ink);
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--seal);
+      color: white;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--mono);
+      font-size: 0.95rem;
+      letter-spacing: 0.03em;
+    }
+    .logo-mark {
+      width: 28px; height: 28px;
+      background: white;
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--seal);
+      font-weight: 500;
+      font-size: 0.8rem;
+    }
+    .user-pill {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.75);
+    }
+    .avatar {
+      width: 30px; height: 30px;
+      background: var(--seal-mid);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 600; font-size: 0.75rem; color: white;
+    }
+
+    /* ── LAYOUT ── */
+    .main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem;
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 2rem;
+      align-items: start;
+    }
+    @media (max-width: 720px) {
+      .main { grid-template-columns: 1fr; }
+    }
+
+    /* ── SECTION TITLES ── */
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-bottom: 1rem;
+    }
+
+    /* ── STATS BAR ── */
+    .stats {
+      grid-column: 1 / -1;
+      display: flex;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 0.5rem;
+    }
+    .stat {
+      flex: 1;
+      background: var(--white);
+      padding: 1.1rem 1.4rem;
+      display: flex; flex-direction: column; gap: 4px;
+    }
+    .stat-value {
+      font-family: var(--serif);
+      font-size: 2rem;
+      line-height: 1;
+      color: var(--seal);
+    }
+    .stat-label {
+      font-size: 0.78rem;
+      color: var(--ink-soft);
+    }
+
+    /* ── FORM CARD ── */
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .card-header {
+      padding: 1.2rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .card-header h2 {
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+    .card-body { padding: 1.5rem; }
+
+    /* ── FORM ── */
+    .field { margin-bottom: 1.2rem; }
+    .field:last-child { margin-bottom: 0; }
+    label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--ink-soft);
+      margin-bottom: 5px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    select, input, textarea {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      padding: 0.6rem 0.85rem;
+      font-family: var(--sans);
+      font-size: 0.9rem;
+      color: var(--ink);
+      background: var(--white);
+      transition: border-color 0.15s;
+      outline: none;
+      appearance: none;
+    }
+    select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7280' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 2rem; }
+    select:focus, input:focus, textarea:focus { border-color: var(--seal-mid); box-shadow: 0 0 0 3px rgba(45,95,138,0.1); }
+    textarea { resize: vertical; min-height: 80px; }
+
+    .btn-primary {
+      width: 100%;
+      background: var(--seal);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 0.75rem;
+      font-family: var(--sans);
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.1s;
+      margin-top: 1.4rem;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .btn-primary:hover { background: var(--seal-mid); }
+    .btn-primary:active { transform: scale(0.99); }
+    .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    /* ── BADGE LIST ── */
+    .badge-list { display: flex; flex-direction: column; gap: 1px; background: var(--border); }
+    .badge-item {
+      background: var(--white);
+      padding: 1rem 1.2rem;
+      display: flex; align-items: center; gap: 12px;
+      transition: background 0.1s;
+    }
+    .badge-item:hover { background: #fafaf8; }
+    .badge-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--valid);
+      flex-shrink: 0;
+    }
+    .badge-info { flex: 1; min-width: 0; }
+    .badge-name {
+      font-size: 0.88rem;
+      font-weight: 500;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .badge-meta {
+      font-size: 0.76rem;
+      color: var(--ink-soft);
+      margin-top: 2px;
+    }
+    .badge-tag {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      background: var(--valid-bg);
+      color: var(--valid);
+      padding: 2px 8px;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+    .badge-link {
+      font-size: 0.75rem;
+      color: var(--seal-mid);
+      text-decoration: none;
+      font-family: var(--mono);
+      opacity: 0.7;
+      transition: opacity 0.15s;
+    }
+    .badge-link:hover { opacity: 1; }
+
+    /* ── SUCCESS TOAST ── */
+    .toast {
+      position: fixed;
+      bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(20px);
+      background: var(--seal);
+      color: white;
+      padding: 0.85rem 1.5rem;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      display: flex; align-items: center; gap: 10px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s, transform 0.2s;
+      z-index: 999;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    }
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* ── EMPTY STATE ── */
+    .empty {
+      padding: 2rem 1.5rem;
+      text-align: center;
+      color: var(--ink-soft);
+      font-size: 0.85rem;
+    }
+
+    /* ── MODAL ── */
+    .modal-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.4);
+      z-index: 200;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.2s;
+    }
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+    .modal {
+      background: white;
+      border-radius: 14px;
+      padding: 2rem;
+      max-width: 420px; width: 90%;
+      transform: scale(0.96);
+      transition: transform 0.2s;
+    }
+    .modal-overlay.open .modal { transform: scale(1); }
+    .modal h3 { font-family: var(--serif); font-size: 1.4rem; margin-bottom: 0.5rem; }
+    .modal p { font-size: 0.86rem; color: var(--ink-soft); margin-bottom: 1.5rem; line-height: 1.5; }
+    .modal-id {
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      padding: 0.7rem 1rem;
+      margin-bottom: 1.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem;
+    }
+    .copy-btn {
+      font-size: 0.75rem;
+      color: var(--seal-mid);
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-family: var(--mono);
+      padding: 0;
+    }
+    .modal-actions { display: flex; gap: 0.75rem; }
+    .btn-sec {
+      flex: 1;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.65rem;
+      font-size: 0.85rem;
+      font-family: var(--sans);
+      cursor: pointer;
+      color: var(--ink);
+      transition: background 0.15s;
+    }
+    .btn-sec:hover { background: var(--border); }
+    .btn-ok {
+      flex: 1;
+      background: var(--seal);
+      border: none;
+      border-radius: 8px;
+      padding: 0.65rem;
+      font-size: 0.85rem;
+      font-family: var(--sans);
+      font-weight: 600;
+      cursor: pointer;
+      color: white;
+      transition: background 0.15s;
+    }
+    .btn-ok:hover { background: var(--seal-mid); }
+
+    .valid-icon {
+      width: 48px; height: 48px;
+      background: var(--valid-bg);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-mark">A</div>
+    AttestaEdu
+  </div>
+  <div class="user-pill">
+    <span>M. Benkhelifa</span>
+    <div class="avatar">ZB</div>
+  </div>
+</header>
+
+<div class="main">
+
+  <!-- Stats -->
+  <div class="stats">
+    <div class="stat">
+      <span class="stat-value" id="total-count">0</span>
+      <span class="stat-label">badges délivrés</span>
+    </div>
+    <div class="stat">
+      <span class="stat-value" id="student-count">0</span>
+      <span class="stat-label">élèves attestés</span>
+    </div>
+    <div class="stat">
+      <span class="stat-value" id="skill-count">0</span>
+      <span class="stat-label">compétences distinctes</span>
+    </div>
+  </div>
+
+  <!-- Colonne gauche : liste -->
+  <div>
+    <p class="section-label">Badges récents</p>
+    <div class="card">
+      <div id="badge-list" class="badge-list">
+        <div class="empty">Aucun badge délivré pour l'instant.<br>Utilisez le formulaire pour commencer.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Colonne droite : formulaire -->
+  <div>
+    <p class="section-label">Délivrer un badge</p>
+    <div class="card">
+      <div class="card-header">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+        <h2>Nouvelle attestation</h2>
+      </div>
+      <div class="card-body">
+
+        <div class="field">
+          <label for="student">Élève</label>
+          <select id="student">
+            <option value="">— Sélectionner —</option>
+            <option>Yasmine Benali</option>
+            <option>Karim Daoudi</option>
+            <option>Inès Morel</option>
+            <option>Thomas Nguyen</option>
+            <option>Sofia El Amrani</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="skill">Compétence</label>
+          <select id="skill">
+            <option value="">— Sélectionner —</option>
+            <optgroup label="SIN — Programmation">
+              <option>Python Niveau 1</option>
+              <option>Python Niveau 2</option>
+              <option>Arduino — Bases</option>
+              <option>Arduino — Capteurs</option>
+            </optgroup>
+            <optgroup label="SIN — Réseaux">
+              <option>Réseau TCP/IP</option>
+              <option>Protocoles HTTP/HTTPS</option>
+              <option>Configuration routeur</option>
+            </optgroup>
+            <optgroup label="SIN — Systèmes">
+              <option>Linux — Commandes de base</option>
+              <option>Linux — Scripts shell</option>
+              <option>Bases de données SQL</option>
+            </optgroup>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="context">Contexte <span style="font-weight:400;text-transform:none;letter-spacing:0">(optionnel)</span></label>
+          <textarea id="context" placeholder="Ex : Projet fil rouge S2, TP réseau n°3…"></textarea>
+        </div>
+
+        <div class="field">
+          <label for="niveau">Niveau de maîtrise</label>
+          <select id="niveau">
+            <option value="acquis">Acquis</option>
+            <option value="maitrise">Maîtrisé</option>
+            <option value="expert">Expert</option>
+          </select>
+        </div>
+
+        <button class="btn-primary" id="submit-btn" onclick="deliverBadge()">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          Valider et délivrer
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+  Badge délivré avec succès
+</div>
+
+<!-- Modal confirmation -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <div class="valid-icon">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0d6c3b" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+    <h3>Badge délivré</h3>
+    <p id="modal-desc">Le badge a été enregistré. Partagez ce lien de vérification avec l'élève ou le recruteur.</p>
+    <div class="modal-id">
+      <span id="modal-id-text">ATT-2026-0001</span>
+      <button class="copy-btn" onclick="copyId()">Copier le lien</button>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-sec" onclick="closeModal()">Fermer</button>
+      <button class="btn-ok" onclick="closeModal()">Nouveau badge</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const badges = [];
+  let counter = 1;
+
+  const niveauLabel = { acquis: 'Acquis', maitrise: 'Maîtrisé', expert: 'Expert' };
+
+  function generateId() {
+    return 'ATT-2026-' + String(counter).padStart(4, '0');
+  }
+
+  function deliverBadge() {
+    const student = document.getElementById('student').value;
+    const skill = document.getElementById('skill').value;
+    const context = document.getElementById('context').value.trim();
+    const niveau = document.getElementById('niveau').value;
+
+    if (!student || !skill) {
+      // Shake les champs vides
+      if (!student) pulse('student');
+      if (!skill) pulse('skill');
+      return;
+    }
+
+    const id = generateId();
+    const date = new Date().toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit', year: 'numeric' });
+
+    const badge = { id, student, skill, context, niveau, date };
+    badges.unshift(badge);
+    counter++;
+
+    updateList();
+    updateStats();
+    resetForm();
+    showModal(badge);
+  }
+
+  function pulse(id) {
+    const el = document.getElementById(id);
+    el.style.borderColor = '#c0392b';
+    el.style.boxShadow = '0 0 0 3px rgba(192,57,43,0.15)';
+    setTimeout(() => {
+      el.style.borderColor = '';
+      el.style.boxShadow = '';
+    }, 1200);
+  }
+
+  function updateList() {
+    const list = document.getElementById('badge-list');
+    if (badges.length === 0) {
+      list.innerHTML = '<div class="empty">Aucun badge délivré pour l\'instant.</div>';
+      return;
+    }
+    list.innerHTML = badges.slice(0, 8).map(b => `
+      <div class="badge-item">
+        <div class="badge-dot"></div>
+        <div class="badge-info">
+          <div class="badge-name">${b.student} — ${b.skill}</div>
+          <div class="badge-meta">${b.date}${b.context ? ' · ' + b.context : ''}</div>
+        </div>
+        <span class="badge-tag">${niveauLabel[b.niveau]}</span>
+        <a class="badge-link" href="#" title="Lien de vérification">${b.id}</a>
+      </div>
+    `).join('');
+  }
+
+  function updateStats() {
+    document.getElementById('total-count').textContent = badges.length;
+    const students = new Set(badges.map(b => b.student));
+    const skills = new Set(badges.map(b => b.skill));
+    document.getElementById('student-count').textContent = students.size;
+    document.getElementById('skill-count').textContent = skills.size;
+  }
+
+  function resetForm() {
+    document.getElementById('student').value = '';
+    document.getElementById('skill').value = '';
+    document.getElementById('context').value = '';
+    document.getElementById('niveau').value = 'acquis';
+  }
+
+  function showModal(badge) {
+    document.getElementById('modal-desc').textContent =
+      `"${badge.skill}" validé pour ${badge.student}. Partagez ce lien de vérification.`;
+    document.getElementById('modal-id-text').textContent =
+      `attestaedu.fr/v/${badge.id.toLowerCase()}`;
+    document.getElementById('modal').classList.add('open');
+  }
+
+  function closeModal() {
+    document.getElementById('modal').classList.remove('open');
+  }
+
+  function copyId() {
+    const text = document.getElementById('modal-id-text').textContent;
+    navigator.clipboard.writeText('https://' + text).then(() => {
+      const btn = document.querySelector('.copy-btn');
+      btn.textContent = 'Copié ✓';
+      setTimeout(() => btn.textContent = 'Copier le lien', 2000);
+    });
+  }
+
+  function showToast() {
+    const t = document.getElementById('toast');
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2500);
+  }
+
+  // Fermer modal en cliquant dehors
+  document.getElementById('modal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+</script>
+</body>
+</html>

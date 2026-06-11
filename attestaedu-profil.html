@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yasmine Benali — Compétences · AttestaEdu</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:        #0e0f13;
+      --ink-mid:    #4a4d5a;
+      --ink-soft:   #9396a3;
+      --bg:         #f5f5f2;
+      --white:      #ffffff;
+      --seal:       #1a3a5c;
+      --seal-light: #e8eef5;
+      --valid:      #0d6c3b;
+      --valid-bg:   #e6f4ed;
+      --gold:       #b07d2a;
+      --gold-bg:    #fdf3e0;
+      --border:     #e2e2de;
+      --mono:       'DM Mono', monospace;
+      --display:    'Syne', sans-serif;
+      --sans:       'Inter', sans-serif;
+    }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--ink);
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      height: 52px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      color: var(--seal);
+      display: flex; align-items: center; gap: 8px;
+      text-decoration: none;
+    }
+    .logo-mark {
+      width: 24px; height: 24px;
+      background: var(--seal);
+      border-radius: 5px;
+      display: flex; align-items: center; justify-content: center;
+      color: white; font-size: 0.7rem; font-weight: 500;
+    }
+    .verified-pill {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      background: var(--valid-bg);
+      color: var(--valid);
+      padding: 3px 10px;
+      border-radius: 20px;
+      display: flex; align-items: center; gap: 5px;
+    }
+    .dot-live {
+      width: 6px; height: 6px;
+      background: var(--valid);
+      border-radius: 50%;
+      animation: pulse-dot 2s infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    /* ── HERO PROFIL ── */
+    .hero {
+      background: var(--seal);
+      color: white;
+      padding: 3rem 2rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 40px;
+      background: var(--bg);
+      border-radius: 40px 40px 0 0;
+    }
+    .hero-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      display: flex;
+      align-items: flex-end;
+      gap: 1.5rem;
+      padding-bottom: 3rem;
+    }
+    .avatar-wrap {
+      position: relative;
+      flex-shrink: 0;
+    }
+    .avatar-large {
+      width: 80px; height: 80px;
+      background: rgba(255,255,255,0.15);
+      border: 2px solid rgba(255,255,255,0.3);
+      border-radius: 20px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--display);
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: white;
+      letter-spacing: -0.02em;
+    }
+    .avatar-badge {
+      position: absolute;
+      bottom: -6px; right: -6px;
+      width: 22px; height: 22px;
+      background: var(--valid);
+      border-radius: 50%;
+      border: 2px solid var(--seal);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-info { flex: 1; }
+    .hero-name {
+      font-family: var(--display);
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+    .hero-sub {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.6);
+      display: flex; align-items: center; gap: 8px;
+      flex-wrap: wrap;
+    }
+    .hero-sep { color: rgba(255,255,255,0.25); }
+    .hero-stats {
+      display: flex; gap: 1.5rem;
+      margin-top: 1.2rem;
+    }
+    .hstat { display: flex; flex-direction: column; gap: 2px; }
+    .hstat-val {
+      font-family: var(--display);
+      font-size: 1.4rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+    .hstat-lbl {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── CONTENU ── */
+    .content {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 2rem 2rem 4rem;
+    }
+
+    /* ── ACTIONS ── */
+    .actions {
+      display: flex; gap: 0.75rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+    .btn-share {
+      display: flex; align-items: center; gap: 7px;
+      background: var(--seal);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 0.6rem 1.1rem;
+      font-family: var(--sans);
+      font-size: 0.83rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .btn-share:hover { background: #2d5f8a; }
+    .btn-outline {
+      display: flex; align-items: center; gap: 7px;
+      background: var(--white);
+      color: var(--ink);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.6rem 1.1rem;
+      font-family: var(--sans);
+      font-size: 0.83rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .btn-outline:hover { background: var(--bg); }
+
+    /* ── FILTRES ── */
+    .filters {
+      display: flex; gap: 0.5rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      padding: 5px 12px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: var(--white);
+      color: var(--ink-mid);
+      cursor: pointer;
+      transition: all 0.15s;
+      letter-spacing: 0.03em;
+    }
+    .filter-btn.active {
+      background: var(--seal);
+      color: white;
+      border-color: var(--seal);
+    }
+
+    /* ── SECTION LABEL ── */
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-bottom: 1rem;
+    }
+
+    /* ── GRILLE BADGES ── */
+    .badges-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 2rem;
+    }
+    .badge-card {
+      background: var(--white);
+      padding: 1.2rem;
+      display: flex; flex-direction: column; gap: 0.75rem;
+      cursor: pointer;
+      transition: background 0.12s;
+      position: relative;
+    }
+    .badge-card:hover { background: #fafaf8; }
+    .badge-card:hover .badge-verify { opacity: 1; }
+
+    .badge-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .badge-icon.prog  { background: #e8f0fe; }
+    .badge-icon.reseau { background: #fce8ff; }
+    .badge-icon.sys   { background: #fff4e0; }
+    .badge-icon.stage { background: var(--valid-bg); }
+
+    .badge-title {
+      font-size: 0.88rem;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+    .badge-issuer {
+      font-size: 0.75rem;
+      color: var(--ink-soft);
+    }
+    .badge-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-top: auto;
+    }
+    .niveau-tag {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      padding: 2px 8px;
+      border-radius: 4px;
+      letter-spacing: 0.03em;
+    }
+    .niveau-acquis   { background: var(--seal-light); color: var(--seal); }
+    .niveau-maitrise { background: var(--valid-bg); color: var(--valid); }
+    .niveau-expert   { background: var(--gold-bg); color: var(--gold); }
+
+    .badge-date {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--ink-soft);
+    }
+    .badge-verify {
+      position: absolute;
+      top: 10px; right: 10px;
+      font-size: 0.65rem;
+      font-family: var(--mono);
+      color: var(--seal);
+      background: var(--seal-light);
+      padding: 2px 7px;
+      border-radius: 4px;
+      opacity: 0;
+      transition: opacity 0.15s;
+      text-decoration: none;
+    }
+
+    /* ── TIMELINE STAGE ── */
+    .timeline { display: flex; flex-direction: column; gap: 0; }
+    .timeline-item {
+      display: flex; gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .timeline-item:last-child { border-bottom: none; }
+    .tl-left { display: flex; flex-direction: column; align-items: center; gap: 0; }
+    .tl-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--valid);
+      margin-top: 4px;
+      flex-shrink: 0;
+    }
+    .tl-line {
+      width: 1px;
+      flex: 1;
+      background: var(--border);
+      margin-top: 4px;
+    }
+    .tl-right { flex: 1; }
+    .tl-title { font-size: 0.88rem; font-weight: 600; }
+    .tl-sub { font-size: 0.78rem; color: var(--ink-soft); margin-top: 2px; }
+    .tl-tag {
+      display: inline-block;
+      margin-top: 6px;
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      background: var(--valid-bg);
+      color: var(--valid);
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    /* ── SHARE MODAL ── */
+    .modal-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.45);
+      z-index: 200;
+      display: flex; align-items: flex-end; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.2s;
+    }
+    @media (min-width: 500px) {
+      .modal-overlay { align-items: center; }
+    }
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+    .modal {
+      background: white;
+      border-radius: 20px 20px 0 0;
+      padding: 1.5rem;
+      width: 100%;
+      max-width: 420px;
+      transform: translateY(20px);
+      transition: transform 0.25s;
+    }
+    @media (min-width: 500px) {
+      .modal { border-radius: 14px; }
+    }
+    .modal-overlay.open .modal { transform: translateY(0); }
+    .modal-handle {
+      width: 36px; height: 4px;
+      background: var(--border);
+      border-radius: 2px;
+      margin: 0 auto 1.2rem;
+    }
+    .modal h3 {
+      font-family: var(--display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+    .modal p { font-size: 0.82rem; color: var(--ink-soft); margin-bottom: 1.2rem; }
+    .share-url {
+      display: flex;
+      gap: 0.5rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.6rem 0.8rem;
+      margin-bottom: 1.2rem;
+      align-items: center;
+    }
+    .share-url span {
+      flex: 1;
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--ink-mid);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .copy-btn {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--seal);
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    .share-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+    }
+    .share-opt {
+      display: flex; align-items: center; gap: 8px;
+      padding: 0.7rem 0.9rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--white);
+      cursor: pointer;
+      font-size: 0.82rem;
+      font-family: var(--sans);
+      color: var(--ink);
+      transition: background 0.12s;
+    }
+    .share-opt:hover { background: var(--bg); }
+
+    /* ── TOAST ── */
+    .toast {
+      position: fixed;
+      bottom: 2rem; left: 50%;
+      transform: translateX(-50%) translateY(10px);
+      background: var(--ink);
+      color: white;
+      padding: 0.7rem 1.2rem;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s, transform 0.2s;
+      z-index: 999;
+      white-space: nowrap;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    @media (max-width: 480px) {
+      .hero-inner { flex-direction: column; align-items: flex-start; gap: 1rem; }
+      .hero-name { font-size: 1.6rem; }
+      .badges-grid { grid-template-columns: 1fr 1fr; }
+      .content { padding: 1.5rem 1rem 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="#">
+    <div class="logo-mark">A</div>
+    AttestaEdu
+  </a>
+  <div class="verified-pill">
+    <div class="dot-live"></div>
+    Profil vérifié
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="avatar-wrap">
+      <div class="avatar-large">YB</div>
+      <div class="avatar-badge">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+    </div>
+    <div class="hero-info">
+      <div class="hero-name">Yasmine Benali</div>
+      <div class="hero-sub">
+        <span>Terminale STI2D SIN</span>
+        <span class="hero-sep">·</span>
+        <span>Lycée Jean Moulin, Morangis</span>
+        <span class="hero-sep">·</span>
+        <span>2025–2026</span>
+      </div>
+      <div class="hero-stats">
+        <div class="hstat">
+          <span class="hstat-val">8</span>
+          <span class="hstat-lbl">compétences</span>
+        </div>
+        <div class="hstat">
+          <span class="hstat-val">1</span>
+          <span class="hstat-lbl">stage</span>
+        </div>
+        <div class="hstat">
+          <span class="hstat-val">3</span>
+          <span class="hstat-lbl">domaines</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTENU -->
+<div class="content">
+
+  <!-- Actions -->
+  <div class="actions">
+    <button class="btn-share" onclick="openShare()">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+      Partager ce profil
+    </button>
+    <button class="btn-outline" onclick="exportPDF()">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+      Exporter en PDF
+    </button>
+    <button class="btn-outline" onclick="copyLink()">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+      Copier le lien
+    </button>
+  </div>
+
+  <!-- Filtres -->
+  <div class="filters">
+    <button class="filter-btn active" onclick="filterBadges('all', this)">Tout</button>
+    <button class="filter-btn" onclick="filterBadges('prog', this)">Programmation</button>
+    <button class="filter-btn" onclick="filterBadges('reseau', this)">Réseaux</button>
+    <button class="filter-btn" onclick="filterBadges('sys', this)">Systèmes</button>
+    <button class="filter-btn" onclick="filterBadges('stage', this)">Stages</button>
+  </div>
+
+  <!-- Grille compétences -->
+  <p class="section-label">Compétences validées</p>
+  <div class="badges-grid" id="badges-grid">
+
+    <div class="badge-card" data-cat="prog" onclick="verifyBadge('ATT-2026-0012')">
+      <a class="badge-verify" href="#">Vérifier</a>
+      <div class="badge-icon prog">🐍</div>
+      <div>
+        <div class="badge-title">Python Niveau 2</div>
+        <div class="badge-issuer">M. Benkhelifa · STI2D SIN</div>
+      </div>
+      <div class="badge-footer">
+        <span class="niveau-tag niveau-maitrise">Maîtrisé</span>
+        <span class="badge-date">15/03/2026</span>
+      </div>
+    </div>
+
+    <div class="badge-card" data-cat="reseau" onclick="verifyBadge('ATT-2026-0008')">
+      <a class="badge-verify" href="#">Vérifier</a>
+      <div class="badge-icon reseau">🌐</div>
+      <div>
+        <div class="badge-title">Réseau TCP/IP</div>
+        <div class="badge-issuer">Mme Dupont · STI2D SIN</div>
+      </div>
+      <div class="badge-footer">
+        <span class="niveau-tag niveau-maitrise">Maîtrisé</span>
+        <span class="badge-date">02/02/2026</span>
+      </div>
+    </div>
+
+    <div class="badge-card" data-cat="prog" onclick="verifyBadge('ATT-2026-0003')">
+      <a class="badge-verify" href="#">Vérifier</a>
+      <div class="badge-icon prog">⚡</div>
+      <div>
+        <div class="badge-title">Arduino — Capteurs</div>
+        <div class="badge-issuer">M. Benkhelifa · STI2D SIN</div>
+      </div>
+      <div class="badge-footer">
+        <span class="niveau-tag niveau-expert">Expert</span>
+        <span class="badge-date">18/01/2026</span>
+      </div>
+    </div>
+
+    <div class="badge-card" data-cat="sys" onclick="verifyBadge('ATT-2026-0019')">
+      <a class="badge-verify" href="#">Vérifier</a>
+      <div class="badge-icon sys">🐧</div>
+      <div>
+        <div class="badge-title">Linux — Scripts shell</div>
+        <div class="badge-issuer">M. Benkhelifa · STI2D SIN</div>
+      </div>
+      <div class="badge-footer">
+        <span class="niveau-tag niveau-acquis">Acquis</span>
+        <span class="badge-date">10/04/2026</span>
+      </div>
+    </div>
+
+    <div class="badge-card" data-cat="reseau" onclick="verifyBadge('ATT-2026-0015')">
+      <a class="badge-verify" href="#">Vérifier</a>
+      <div class="badge-icon reseau">🔒</div>
+      <div>
+        <div class="badge-title">Protocoles HTTP/HTTPS</div>
+        <div class="badge-issuer">M. Benkhelifa · STI2D SIN</div>
+      </div>
+      <div class="badge-footer">
+        <span class="niveau-tag niveau-acquis">Acquis</span>
+        <span class="badge-date">20/03/2026</span>
+      </div>
+    </div>
+
+    <div class="badge-card" data-cat="sys" onclick="verifyBadge('ATT-2026-0021')">
+      <a class="badge-verify" href="#">Vérifier</a>
+      <div class="badge-icon sys">🗄️</div>
+      <div>
+        <div class="badge-title">Bases de données SQL</div>
+        <div class="badge-issuer">Mme Dupont · STI2D SIN</div>
+      </div>
+      <div class="badge-footer">
+        <span class="niveau-tag niveau-maitrise">Maîtrisé</span>
+        <span class="badge-date">05/05/2026</span>
+      </div>
+    </div>
+
+    <div class="badge-card" data-cat="prog" onclick="verifyBadge('ATT-2026-0001')">
+      <a class="badge-verify" href="#">Vérifier</a>
+      <div class="badge-icon prog">🐍</div>
+      <div>
+        <div class="badge-title">Python Niveau 1</div>
+        <div class="badge-issuer">M. Benkhelifa · STI2D SIN</div>
+      </div>
+      <div class="badge-footer">
+        <span class="niveau-tag niveau-maitrise">Maîtrisé</span>
+        <span class="badge-date">10/11/2025</span>
+      </div>
+    </div>
+
+    <div class="badge-card" data-cat="reseau" onclick="verifyBadge('ATT-2026-0006')">
+      <a class="badge-verify" href="#">Vérifier</a>
+      <div class="badge-icon reseau">📡</div>
+      <div>
+        <div class="badge-title">Configuration routeur</div>
+        <div class="badge-issuer">Mme Dupont · STI2D SIN</div>
+      </div>
+      <div class="badge-footer">
+        <span class="niveau-tag niveau-acquis">Acquis</span>
+        <span class="badge-date">15/01/2026</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Expérience / Stage -->
+  <p class="section-label">Expérience</p>
+  <div class="badges-grid" style="margin-bottom:0">
+    <div class="badge-card" data-cat="stage" style="grid-column: 1 / -1; flex-direction: row; align-items: center; gap: 1rem;" onclick="verifyBadge('ATT-2026-0030')">
+      <a class="badge-verify" href="#">Vérifier</a>
+      <div class="badge-icon stage" style="width:48px;height:48px;flex-shrink:0">⚡</div>
+      <div style="flex:1">
+        <div class="badge-title">Stage — Schneider Electric</div>
+        <div class="badge-issuer">Automatisme industriel · 4 semaines · Massy (91)</div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">
+        <span class="niveau-tag niveau-maitrise" style="font-size:0.65rem">Attesté</span>
+        <span class="badge-date">Juin 2026</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- MODAL PARTAGE -->
+<div class="modal-overlay" id="share-modal">
+  <div class="modal">
+    <div class="modal-handle"></div>
+    <h3>Partager ce profil</h3>
+    <p>Envoyez ce lien à un recruteur ou incluez-le dans votre CV. Aucun compte requis pour consulter.</p>
+    <div class="share-url">
+      <span>attestaedu.fr/profil/yasmine-benali</span>
+      <button class="copy-btn" onclick="copyLink()">Copier</button>
+    </div>
+    <div class="share-options">
+      <button class="share-opt" onclick="closeShare()">
+        <span>📧</span> Par e-mail
+      </button>
+      <button class="share-opt" onclick="closeShare()">
+        <span>💼</span> LinkedIn
+      </button>
+      <button class="share-opt" onclick="exportPDF()">
+        <span>📄</span> PDF CV
+      </button>
+      <button class="share-opt" onclick="closeShare()">
+        <span>🎓</span> Parcoursup
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+  function openShare() {
+    document.getElementById('share-modal').classList.add('open');
+  }
+  function closeShare() {
+    document.getElementById('share-modal').classList.remove('open');
+  }
+  document.getElementById('share-modal').addEventListener('click', function(e) {
+    if (e.target === this) closeShare();
+  });
+
+  function copyLink() {
+    navigator.clipboard.writeText('https://attestaedu.fr/profil/yasmine-benali').then(() => {
+      showToast('Lien copié ✓');
+      closeShare();
+    });
+  }
+
+  function exportPDF() {
+    showToast('Export PDF en cours…');
+    closeShare();
+  }
+
+  function verifyBadge(id) {
+    showToast('Ouverture vérification ' + id + '…');
+  }
+
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2200);
+  }
+
+  function filterBadges(cat, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.badge-card[data-cat]').forEach(card => {
+      if (cat === 'all' || card.dataset.cat === cat) {
+        card.style.display = '';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+</script>
+</body>
+</html>
